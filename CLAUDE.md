@@ -42,3 +42,37 @@ Key conventions in this skill:
 ## Adding New Skills
 
 Create a new `.md` file in the root with the YAML frontmatter above. The `description` field is critical — it determines when Claude auto-invokes the skill without an explicit slash command, so it should include all expected user trigger phrases.
+
+---
+
+## 使用者背景資料（User Context）
+
+### 公司資訊
+- **公司名稱**：元太國際開發有限公司
+- **統一編號**：59221893
+- **代表人**：李政家
+- **登記地址**：高雄市前金區大同二路81之1號1樓（郵遞區號：80143）
+- **公司電話**：+886-7-2818772
+- **聯絡 Email**：chia397777@gmail.com / chia969171@yahoo.com.tw
+- **公司網站**：yt8772.com（目前為 HTTP，尚未加 SSL）
+
+### App 專案：法寶貝
+- **前身名稱**：LEXIPASS（因商標已被他人登記而改名）
+- **開發語言**：Flutter（跨平台，同時出 Android APK 與 iOS）
+- **專案路徑（Windows）**：`D:\lexipass\`
+- **備份路徑（H 槽隨身碟）**：`H:\lexipass_20260705_0152\`（2026/07/05 備份）
+- **最新版本**：v1.27.1（APK 已備份至 H 槽）
+- **Windows 開發電腦帳號**：Acer
+
+### Apple Developer Program（蘋果開發者計畫）申請進度
+- **目標**：Organization（公司）帳號，$99/年
+- **D-U-N-S Number（鄧白氏編碼）**：已申請，等待 D&B 回覆（送至 chia969171@yahoo.com.tw，5–14 工作天）
+- **收到後**：前往 developer.apple.com/programs/enroll/ 完成 Organization 帳號申請
+
+### Google Play Console（Google 應用程式商店後台）申請進度
+- **目標**：Organization（公司）帳號，$25 一次
+- **狀態**：同樣需要 D-U-N-S Number，等收到後繼續申請
+
+### 對話語言規則
+- 以**繁體中文**與使用者對話
+- 專有名詞保留原文，旁邊附繁體中文說明（例：App Store（應用程式商店））
