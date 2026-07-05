@@ -66,12 +66,13 @@ Create a new `.md` file in the root with the YAML frontmatter above. The `descri
 
 ### Apple Developer Program（蘋果開發者計畫）申請進度
 - **目標**：Organization（公司）帳號，$99/年
-- **D-U-N-S Number（鄧白氏編碼）**：已申請，等待 D&B 回覆（送至 chia969171@yahoo.com.tw，5–14 工作天）
-- **收到後**：前往 developer.apple.com/programs/enroll/ 完成 Organization 帳號申請
+- **D-U-N-S Number（鄧白氏編碼）**：**658126410**（2026/07/03 核發，D&B iResearch Case #10579761）
+- **下一步**：前往 developer.apple.com/programs/enroll/ 完成 Organization 帳號申請
 
 ### Google Play Console（Google 應用程式商店後台）申請進度
 - **目標**：Organization（公司）帳號，$25 一次
-- **狀態**：同樣需要 D-U-N-S Number，等收到後繼續申請
+- **D-U-N-S Number**：658126410（已取得）
+- **下一步**：前往 play.google.com/console/signup 完成 Organization 帳號申請
 
 ### 對話語言規則
 - 以**繁體中文**與使用者對話
