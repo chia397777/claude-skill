@@ -70,9 +70,12 @@ Create a new `.md` file in the root with the YAML frontmatter above. The `descri
 - **下一步**：前往 developer.apple.com/programs/enroll/ 完成 Organization 帳號申請
 
 ### Google Play Console（Google 應用程式商店後台）申請進度
-- **目標**：Organization（公司）帳號，$25 一次
-- **D-U-N-S Number**：658126410（已取得）
-- **下一步**：前往 play.google.com/console/signup 完成 Organization 帳號申請
+- **狀態**：✅ **已完成**（2026/07/06）
+- **帳號類型**：Organization（公司）帳號
+- **註冊費**：$25 美元（一次性，已扣款）
+- **付款卡**：Visa •••• 7327
+- **收據寄至**：chia397777@gmail.com
+- **後台網址**：play.google.com/console/
 
 ### 對話語言規則
 - 以**繁體中文**與使用者對話
