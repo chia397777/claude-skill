@@ -49,28 +49,39 @@ CHIT_CHAT_PATTERNS = [
 
 MIN_LEGAL_SCORE = 2  # 達到此分數才送 API
 
+# 複雜問題關鍵詞（需要較強模型）
+COMPLEX_LEGAL = {
+    "書狀", "起訴書", "答辯狀", "上訴狀", "聲明書", "訴願書",
+    "IRAC", "論證", "涵攝", "判決分析", "蘇格拉底",
+    "強制執行", "假扣押", "假處分", "羈押", "抗告",
+}
+
 
 @dataclass
 class IntentResult:
     is_legal: bool
     score: float
     reason: str
+    model: str  # 建議使用的 Claude model
 
 
 def classify_intent(text: str) -> IntentResult:
     """
     回傳 IntentResult。
     is_legal=True → 送 Claude API；False → 回預設「非法律問題」回覆。
+    model 欄位依複雜度分級：haiku / sonnet-5 / opus-4-8
     """
     score = 0.0
     reasons = []
+    high_hit = False
 
     # 高權重詞命中
     for kw in HIGH_WEIGHT_LEGAL:
         if re.search(kw, text):
             score += 3
             reasons.append(f"high:{kw}")
-            break  # 一個就夠，避免重複加分
+            high_hit = True
+            break
 
     # 中權重詞計數
     med_hits = sum(1 for kw in MED_WEIGHT_LEGAL if kw in text)
@@ -100,10 +111,22 @@ def classify_intent(text: str) -> IntentResult:
         score += 1
 
     is_legal = score >= MIN_LEGAL_SCORE
+
+    # 分級模型選擇
+    if not is_legal:
+        model = "claude-haiku-4-5-20251001"
+    elif any(kw in text for kw in COMPLEX_LEGAL) or char_count >= 150:
+        model = "claude-opus-4-8"       # 書狀撰寫、IRAC 論證
+    elif high_hit or score >= 5:
+        model = "claude-sonnet-5"       # 一般法律諮詢
+    else:
+        model = "claude-haiku-4-5-20251001"  # 簡單法律查詢
+
     return IntentResult(
         is_legal=is_legal,
         score=score,
         reason=", ".join(reasons) if reasons else "no_signal",
+        model=model,
     )
 
 
