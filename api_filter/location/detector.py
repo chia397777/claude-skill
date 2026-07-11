@@ -169,14 +169,16 @@ def auto_load_packs(
     Returns:
         LocationContext（同 detect_from_coordinates）
     """
-    from api_filter.offline_packs.loader import load_pack, is_loaded
+    from api_filter.offline_packs.loader import reset_to_defaults, load_pack
+
+    # 切換位置時先重設（清除舊 GPS 包，重載 legal_taiwan 等預設包）
+    reset_to_defaults()
 
     ctx = detect_from_coordinates(lat, lng, google_api_key)
     for pack_id in ctx.suggested_packs:
-        if not is_loaded(pack_id):
-            try:
-                load_pack(pack_id)
-                logger.info("auto_load_packs: loaded %r", pack_id)
-            except FileNotFoundError:
-                logger.error("auto_load_packs: pack not found — %r", pack_id)
+        try:
+            load_pack(pack_id)
+            logger.info("auto_load_packs: loaded %r", pack_id)
+        except FileNotFoundError:
+            logger.error("auto_load_packs: pack not found — %r", pack_id)
     return ctx
