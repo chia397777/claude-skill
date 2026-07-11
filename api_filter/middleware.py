@@ -301,3 +301,36 @@ async def clear_history(session_id: str) -> dict:
     _histories.pop(session_id, None)
     _contexts.pop(session_id, None)
     return {"cleared": True, "session_id": session_id}
+
+
+# ════════════════════════════════════════════════════════════
+#  端點五：GET /version  版本資訊（手機測試用）
+# ════════════════════════════════════════════════════════════
+
+_API_VERSION = "1.0.1"
+_BUILD_DATE  = "2026-07-11"
+
+
+@router.get("/version")
+async def version_info() -> dict:
+    """
+    回傳 API 版本、build 日期、已載入的離線包清單與版本。
+    手機 App 啟動時呼叫一次可核對伺服器與包版本是否符合預期。
+    """
+    from api_filter.offline_packs.loader import _loader
+    import json, re
+
+    packs_info = []
+    for pack in _loader._packs:
+        packs_info.append({
+            "pack_id": pack.get("pack_id"),
+            "version": pack.get("version"),
+            "updated": pack.get("updated"),
+            "scenarios": len(pack.get("scenarios", [])),
+        })
+
+    return {
+        "api_version": _API_VERSION,
+        "build_date":  _BUILD_DATE,
+        "packs": packs_info,
+    }

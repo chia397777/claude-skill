@@ -1,7 +1,8 @@
 {
   "pack_id": "southern_taiwan",
   "lang": "zh-TW",
-  "version": "1.0",
+  "version": "1.0.0",
+  "updated": "2026-07-11",
   "description": "南台灣旅遊導覽包：高雄、台南、屏東、台東 — 景點、路程時間、注意事項、司乘雙語對話",
   "scenarios": [
     {

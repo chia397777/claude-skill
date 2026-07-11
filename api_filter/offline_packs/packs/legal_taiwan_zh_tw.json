@@ -1,7 +1,8 @@
 {
   "pack_id": "legal_taiwan",
   "lang": "zh_tw",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "updated": "2026-07-11",
   "description": "台灣日常生活法律常識包 — 租賃、勞資、消費、交通、家事、申訴管道",
   "scenarios": [
 

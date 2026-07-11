@@ -1,7 +1,8 @@
 {
   "pack_id": "airport_travel",
   "lang": "zh-TW",
-  "version": "1.0",
+  "version": "1.0.1",
+  "updated": "2026-07-11",
   "description": "機場 → 計程車 → 飯店 → 景點 完整旅遊對話包",
   "scenarios": [
 
