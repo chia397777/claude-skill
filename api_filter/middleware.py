@@ -1,5 +1,5 @@
 """
-FastAPI 整合：三層過濾 + 紅單引擎 + 升級判斷 + Prompt Caching + 分級模型
+FastAPI 整合：三層過濾 + 表格化模版 + 升級判斷 + Prompt Caching + 分級模型
 
 ── 快速接入 ─────────────────────────────────────────────────────
     from fastapi import FastAPI
@@ -15,7 +15,7 @@ FastAPI 整合：三層過濾 + 紅單引擎 + 升級判斷 + Prompt Caching + �
 
 端點一覽：
     POST /chat                    一般對話（含三層過濾 + 升級判斷）
-    POST /morning                 生成今日紅單（純離線，成本 $0）
+    POST /morning                 生成今日表格化模版（純離線，成本 $0）
     POST /location/detect         依 GPS 自動偵測位置並載入對應離線包
     DELETE /chat/{sid}/history    清除對話歷史
 """
@@ -31,7 +31,7 @@ from pydantic import BaseModel, Field
 
 from .filter import pre_filter, FilterResult
 from .intent import classify_intent
-from .red_slip.template import RedSlipData, ScheduleItem, render_red_slip
+from .red_slip.template import TemplateData, ScheduleItem, render_template, to_context_block
 from .red_slip.escalation import check_escalation, EscalationResult, ESCALATION_BRIDGE
 from .location.detector import detect_from_coordinates, auto_load_packs, LocationContext
 
@@ -70,6 +70,7 @@ def _build_cached_system(prompt_text: str) -> list[dict]:
 
 # ── 對話歷史（in-memory；production 換 Redis）───────────────
 _histories: dict[str, Deque[dict]] = {}
+_contexts: dict[str, str] = {}   # session_id → 今日脈絡區塊（注入 system prompt）
 MAX_TURNS = 10  # 保留最近 N 輪（1 輪 = user + assistant）
 
 
@@ -90,20 +91,26 @@ def _append_history(session_id: str, role: str, content: str) -> None:
 class ScheduleItemIn(BaseModel):
     time: str = Field(..., example="09:00")
     title: str = Field(..., example="週會")
+    title_en: str = Field(default="", example="Weekly Meeting")
 
 
 class MorningRequest(BaseModel):
-    """生成紅單所需資料（全由 Flutter App 本地提供，無需 API）"""
+    """生成表格化模版所需資料（全由 Flutter App 本地提供，無需 API）"""
     name: str = Field(..., example="小明")
+    name_en: str = Field(default="", example="Xiao Ming")
     weather: str = Field(default="", example="晴天 28°C")
+    weather_en: str = Field(default="", example="Sunny 28°C")
     schedule: list[ScheduleItemIn] = Field(default_factory=list)
     todos: list[str] = Field(default_factory=list)
+    todos_en: list[str] = Field(default_factory=list)
     reminder: str = Field(default="", example="記得吃藥 💊")
+    reminder_en: str = Field(default="", example="Take medicine 💊")
+    bilingual: bool = Field(default=False, description="是否啟用雙語輸出")
     session_id: str = Field(default="default", max_length=64)
 
 
 class MorningResponse(BaseModel):
-    red_slip: str
+    template: str
     session_id: str
 
 
@@ -144,19 +151,30 @@ class LocationResponse(BaseModel):
 
 @router.post("/morning", response_model=MorningResponse)
 async def morning_endpoint(req: MorningRequest) -> MorningResponse:
-    data = RedSlipData(
+    data = TemplateData(
         name=req.name,
+        name_en=req.name_en,
         weather=req.weather,
-        schedule=[ScheduleItem(time=i.time, title=i.title) for i in req.schedule],
+        weather_en=req.weather_en,
+        schedule=[
+            ScheduleItem(time=i.time, title=i.title, title_en=i.title_en)
+            for i in req.schedule
+        ],
         todos=req.todos,
+        todos_en=req.todos_en,
         reminder=req.reminder,
+        reminder_en=req.reminder_en,
+        bilingual=req.bilingual,
     )
-    slip = render_red_slip(data)
+    rendered = render_template(data)
 
-    # 把紅單存入對話歷史，讓後續 /chat 能感知今天的脈絡
-    _append_history(req.session_id, "assistant", slip)
+    # 結構化脈絡注入 system prompt，讓 Claude 知道今天行程與待辦
+    _contexts[req.session_id] = to_context_block(data)
 
-    return MorningResponse(red_slip=slip, session_id=req.session_id)
+    # 把渲染後的模版存入對話歷史（讓 Claude 看到今天的開場）
+    _append_history(req.session_id, "assistant", rendered)
+
+    return MorningResponse(template=rendered, session_id=req.session_id)
 
 
 # ════════════════════════════════════════════════════════════
@@ -201,12 +219,17 @@ async def chat_endpoint(req: ChatRequest) -> ChatResponse:
     messages.append({"role": "user", "content": user_content})
 
     # ── Layer 3：呼叫 Claude API ──────────────────────────
+    # 若本 session 有今日脈絡（/morning 呼叫後存入），附加在 system prompt 尾端
+    base_system = _get_system_prompt()
+    ctx_block = _contexts.get(req.session_id, "")
+    system_text = f"{base_system}\n\n{ctx_block}" if ctx_block else base_system
+
     try:
         client = _get_client()
         response = client.messages.create(
             model=model,
             max_tokens=2048,
-            system=_build_cached_system(_get_system_prompt()),
+            system=_build_cached_system(system_text),
             messages=messages,
         )
     except anthropic.APIError as e:
@@ -276,4 +299,5 @@ async def location_detect(req: LocationRequest) -> LocationResponse:
 @router.delete("/chat/{session_id}/history")
 async def clear_history(session_id: str) -> dict:
     _histories.pop(session_id, None)
+    _contexts.pop(session_id, None)
     return {"cleared": True, "session_id": session_id}
