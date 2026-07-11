@@ -65,6 +65,40 @@ OK_REPLIES = [
     "了解！請問還有什麼法律問題需要協助嗎？",
 ]
 
+# 詢問助理身份／功能（開場白）
+IDENTITY_PATTERNS = [
+    r"你是誰",
+    r"你叫什麼",
+    r"介紹(一下)?自己",
+    r"你是什麼(AI|助理|機器人|軟體|系統)?",
+    r"法寶貝是什麼",
+    r"你(能|可以|有辦法)?做什麼",
+    r"你(有什麼|什麼)功能",
+    r"你(能|可以)幫(我|忙)什麼",
+    r"(你好|您好).{0,10}你是誰",
+    r"(你好|您好).{0,10}請問你",
+]
+
+IDENTITY_REPLIES = [
+    (
+        "我是法寶貝 👨‍⚖️，您的隨身台灣法律顧問！\n\n"
+        "我能協助您：\n"
+        "• 租賃糾紛（押金、修繕、提前解約）\n"
+        "• 勞資問題（加班費、資遣費、違法解僱）\n"
+        "• 消費爭議（七日鑑賞期、瑕疵商品、詐騙）\n"
+        "• 交通事故（肇事處理、強制險、責任認定）\n"
+        "• 家事法律（離婚、監護權、遺產繼承）\n"
+        "• 申訴管道（調解委員會、法律扶助、1955/1950）\n\n"
+        "請直接描述您的法律狀況，我馬上幫您分析！"
+    ),
+    (
+        "我是法寶貝，台灣法律諮詢 AI 助理。\n\n"
+        "不論是租屋糾紛、勞資爭議、消費保護、交通事故還是家事問題，"
+        "都是我的專長。\n\n"
+        "有任何法律困擾嗎？請說說您的狀況，我來幫您釐清權利與下一步。"
+    ),
+]
+
 _reply_index: dict[str, int] = {}
 
 
@@ -88,6 +122,12 @@ def check_greeting(text: str) -> str | None:
     """
     stripped = text.strip()
 
+    # 身份詢問（不限長度，任意位置；無法律關鍵字才攔）
+    if not _contains_legal_keyword(stripped):
+        for pattern in IDENTITY_PATTERNS:
+            if re.search(pattern, stripped, re.IGNORECASE):
+                return _pick_reply("identity", IDENTITY_REPLIES)
+
     # 太短且沒有法律關鍵字 → 先檢查是否為問候語
     if len(stripped) <= 15 and not _contains_legal_keyword(stripped):
         lower = stripped.lower()
@@ -101,7 +141,7 @@ def check_greeting(text: str) -> str | None:
             return _pick_reply("thanks", THANKS_REPLIES)
 
         # OK 類
-        if re.search(r"^(好的?|OK|ok|okay|okey|ㄅ)[!！。~～\s]*$", stripped):
+        if re.search(r"^(好的?|OK|ok|okay|ㄅ)[!！。~～\s]*$", stripped):
             return _pick_reply("ok", OK_REPLIES)
 
         # 問候語正則比對

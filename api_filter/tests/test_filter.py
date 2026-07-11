@@ -78,6 +78,35 @@ def test_legal_greeting_mix_passes(text):
     assert not r.blocked, f"夾帶法律問題的問候語被誤攔截：{text!r}"
 
 
+# ── Layer 1 身份詢問攔截 ─────────────────────────────────
+@pytest.mark.parametrize("text", [
+    "你是誰",
+    "你能做什麼",
+    "你有什麼功能",
+    "介紹一下自己",
+    "法寶貝是什麼",
+    "你好啊！請問你是誰？",
+    "你可以幫我什麼",
+])
+def test_layer1_blocks_identity_questions(text):
+    r = pre_filter(text)
+    assert r.blocked, f"身份詢問應被 Layer 1 攔截：{text!r}"
+    assert r.layer == "layer1_greeting"
+    assert "法寶貝" in r.reply, f"身份回覆應含有法寶貝：{text!r}"
+
+
+# ── 口語法律詞應放行至 Layer 3 ──────────────────────────
+@pytest.mark.parametrize("text", [
+    "你能幫我打官司嗎",
+    "我想找人打官司",
+    "這種事情可以索賠嗎",
+])
+def test_colloquial_legal_terms_pass(text):
+    r = pre_filter(text)
+    assert not r.blocked or r.layer == "layer1_5_offline_pack", \
+        f"口語法律問題被誤攔截：{text!r} → {r.layer}"
+
+
 # ── 回覆輪替測試（不重複） ────────────────────────────────
 def test_greeting_replies_rotate():
     replies = set()
