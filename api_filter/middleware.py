@@ -307,7 +307,7 @@ async def clear_history(session_id: str) -> dict:
 #  端點五：GET /version  版本資訊（手機測試用）
 # ════════════════════════════════════════════════════════════
 
-_API_VERSION = "1.0.1"
+_API_VERSION = "1.27.7"
 _BUILD_DATE  = "2026-07-11"
 
 
