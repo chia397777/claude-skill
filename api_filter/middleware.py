@@ -10,12 +10,14 @@ FastAPI 整合：三層過濾 + 紅單引擎 + 升級判斷 + Prompt Caching + �
 
 環境變數：
     ANTHROPIC_API_KEY=sk-ant-...
+    GOOGLE_MAPS_API_KEY=（可選，有則回傳可讀地址）
     LEGAL_SYSTEM_PROMPT=（可選，不設則用內建 fallback）
 
 端點一覽：
-    POST /chat              一般對話（含三層過濾 + 升級判斷）
-    POST /morning           生成今日紅單（純離線，成本 $0）
-    DELETE /chat/{sid}/history  清除對話歷史
+    POST /chat                    一般對話（含三層過濾 + 升級判斷）
+    POST /morning                 生成今日紅單（純離線，成本 $0）
+    POST /location/detect         依 GPS 自動偵測位置並載入對應離線包
+    DELETE /chat/{sid}/history    清除對話歷史
 """
 from __future__ import annotations
 
@@ -31,6 +33,7 @@ from .filter import pre_filter, FilterResult
 from .intent import classify_intent
 from .red_slip.template import RedSlipData, ScheduleItem, render_red_slip
 from .red_slip.escalation import check_escalation, EscalationResult, ESCALATION_BRIDGE
+from .location.detector import detect_from_coordinates, auto_load_packs, LocationContext
 
 router = APIRouter(tags=["chat"])
 
@@ -119,6 +122,20 @@ class ChatResponse(BaseModel):
     latency_ms: float
     cache_read_tokens: int = 0
     cache_write_tokens: int = 0
+
+
+class LocationRequest(BaseModel):
+    lat: float = Field(..., ge=-90, le=90, description="緯度")
+    lng: float = Field(..., ge=-180, le=180, description="經度")
+    session_id: str = Field(default="default", max_length=64)
+    auto_load: bool = Field(default=True, description="是否自動載入偵測到的離線包")
+
+
+class LocationResponse(BaseModel):
+    matched_label: str          # 比對到的地點名稱（空字串代表不在已知範圍）
+    suggested_packs: list[str]  # 建議載入的 pack_id 清單
+    loaded_packs: list[str]     # 本次實際載入的 pack_id（已載入者不重複計）
+    geocoded_address: str       # Google Geocoding 回傳的可讀地址（需 API Key）
 
 
 # ════════════════════════════════════════════════════════════
@@ -216,7 +233,44 @@ async def chat_endpoint(req: ChatRequest) -> ChatResponse:
 
 
 # ════════════════════════════════════════════════════════════
-#  端點三：DELETE /chat/{session_id}/history  清除歷史
+#  端點三：POST /location/detect  GPS 自動偵測並載入離線包
+# ════════════════════════════════════════════════════════════
+
+@router.post("/location/detect", response_model=LocationResponse)
+async def location_detect(req: LocationRequest) -> LocationResponse:
+    """
+    前端傳入 GPS 座標，後端：
+      1. 以 bbox 規則判斷使用者位置（機場 / 高雄 / 台南 / 屏東 / 台東…）
+      2. 自動載入對應的離線對話包（若 auto_load=True）
+      3. 可選呼叫 Google Geocoding API 取得可讀地址（需 GOOGLE_MAPS_API_KEY）
+
+    前端在 App 啟動或使用者授予定位權限後呼叫一次即可。
+    """
+    from api_filter.offline_packs.loader import load_pack, is_loaded
+
+    google_api_key = os.environ.get("GOOGLE_MAPS_API_KEY", "")
+    ctx: LocationContext = detect_from_coordinates(req.lat, req.lng, google_api_key or None)
+
+    loaded: list[str] = []
+    if req.auto_load:
+        for pack_id in ctx.suggested_packs:
+            if not is_loaded(pack_id):
+                try:
+                    load_pack(pack_id)
+                    loaded.append(pack_id)
+                except FileNotFoundError:
+                    pass
+
+    return LocationResponse(
+        matched_label=ctx.matched_label,
+        suggested_packs=ctx.suggested_packs,
+        loaded_packs=loaded,
+        geocoded_address=ctx.geocoded_address,
+    )
+
+
+# ════════════════════════════════════════════════════════════
+#  端點四：DELETE /chat/{session_id}/history  清除歷史
 # ════════════════════════════════════════════════════════════
 
 @router.delete("/chat/{session_id}/history")
