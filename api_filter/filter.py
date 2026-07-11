@@ -1,11 +1,19 @@
 """
-三層過濾主入口
+四層過濾主入口
+
+  Layer 1   : 問候語快速攔截（離線，成本 $0）
+  Layer 1.5 : 離線對話包比對（機場/計程車/飯店/景點，成本 $0）
+  Layer 2   : 意圖分類（非法律/閒聊攔截）
+  Layer 3   : 放行，呼叫 Claude API
+
 使用方式：
+    from api_filter.offline_packs.loader import load_pack
+    load_pack("airport_travel")          # 啟動時載入一次
+
     result = pre_filter(user_message)
     if result.blocked:
-        return result.reply   # 直接回，不呼叫 API
+        return result.reply
     else:
-        # 正常呼叫 Claude API
         call_claude(user_message)
 """
 import logging
@@ -14,6 +22,7 @@ from dataclasses import dataclass
 
 from .rules import check_greeting
 from .intent import classify_intent, NON_LEGAL_REPLY
+from .offline_packs.loader import match_offline
 
 logger = logging.getLogger(__name__)
 
@@ -22,14 +31,14 @@ logger = logging.getLogger(__name__)
 class FilterResult:
     blocked: bool
     reply: str | None
-    layer: str         # "layer1_greeting" / "layer2_intent" / "pass"
+    layer: str       # layer1_greeting / layer1_5_offline_pack / layer2_intent / pass
     latency_ms: float
 
 
 def pre_filter(text: str) -> FilterResult:
     t0 = time.perf_counter()
 
-    # ── 第一層：問候語快速攔截 ──────────────────────────────
+    # ── Layer 1：問候語快速攔截 ──────────────────────────────
     greeting_reply = check_greeting(text)
     if greeting_reply:
         ms = (time.perf_counter() - t0) * 1000
@@ -41,7 +50,22 @@ def pre_filter(text: str) -> FilterResult:
             latency_ms=ms,
         )
 
-    # ── 第二層：意圖分類 ────────────────────────────────────
+    # ── Layer 1.5：離線對話包比對 ─────────────────────────────
+    pack_match = match_offline(text)
+    if pack_match:
+        ms = (time.perf_counter() - t0) * 1000
+        logger.info(
+            "layer1_5_block | %.1fms | pack=%s | scenario=%s | text=%r",
+            ms, pack_match.pack_id, pack_match.scenario_id, text[:40],
+        )
+        return FilterResult(
+            blocked=True,
+            reply=pack_match.response,
+            layer="layer1_5_offline_pack",
+            latency_ms=ms,
+        )
+
+    # ── Layer 2：意圖分類 ─────────────────────────────────────
     intent = classify_intent(text)
     ms = (time.perf_counter() - t0) * 1000
 
@@ -57,7 +81,7 @@ def pre_filter(text: str) -> FilterResult:
             latency_ms=ms,
         )
 
-    # ── 第三層：放行，交給 Claude API ───────────────────────
+    # ── Layer 3：放行，呼叫 Claude API ───────────────────────
     logger.info(
         "layer3_pass | %.1fms | score=%.1f | reason=%s | text=%r",
         ms, intent.score, intent.reason, text[:40],
