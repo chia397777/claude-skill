@@ -1,0 +1,407 @@
+{
+  "pack_id": "southern_taiwan",
+  "lang": "zh-TW",
+  "version": "1.0",
+  "description": "南台灣旅遊導覽包：高雄、台南、屏東、台東 — 景點、路程時間、注意事項、司乘雙語對話",
+  "scenarios": [
+    {
+      "id": "route_taipei_kaohsiung",
+      "category": "route",
+      "triggers": [
+        "台北到高雄",
+        "高雄到台北",
+        "台北高雄",
+        "北高",
+        "多久到高雄",
+        "怎麼去高雄"
+      ],
+      "response": "🗺️ 台北 → 高雄 路程時間\n\n| 交通方式 | 時間 | 費用（約）|\n|---------|------|----------|\n| 高鐵（台北→左營）| 1小時36分 | NT$1,490 |\n| 台鐵（自強號）| 3.5–4小時 | NT$843 |\n| 國道1號開車 | 4–5小時 | 油費+過路費 |\n| 飛機（松山→小港）| 55分鐘 | NT$2,000–3,500 |\n\n✅ 建議外籍旅客：\n\"The fastest way is Taiwan High Speed Rail (HSR/高鐵) from Taipei Main Station to Zuoying Station (Kaohsiung) — takes only 96 minutes. Trains depart every 15–30 minutes.\"\n\n🚄 高鐵訂票：台灣高鐵官網、T-EX App（可選英文介面）\n💳 外國護照可直接在自動售票機取票（選\"Foreigner ID\"）"
+    },
+    {
+      "id": "route_taipei_tainan",
+      "category": "route",
+      "triggers": [
+        "台北到台南",
+        "台南到台北",
+        "台北台南",
+        "多久到台南",
+        "怎麼去台南"
+      ],
+      "response": "🗺️ 台北 → 台南 路程時間\n\n| 交通方式 | 時間 | 費用（約）|\n|---------|------|----------|\n| 高鐵（台北→台南） | 1小時48分 | NT$1,350 |\n| 台鐵（自強號） | 3–3.5小時 | NT$762 |\n| 國道開車 | 3.5–4小時 | 油費+過路費 |\n\n⚠️ 注意：高鐵台南站位於「沙崙站」，距離台南市區尚需轉台鐵沙崙線（約25分鐘）。\n\n✅ 給外籍旅客的說明：\n\"From Taipei, take the HSR to Tainan Station (Shalu). Then transfer to the local rail (TRA) Shalu Line to reach Tainan City center in about 25 more minutes.\"\n\n🗓️ 建議停留：台南至少安排2天，小吃文化深厚，古蹟密度高"
+    },
+    {
+      "id": "route_kaohsiung_kenting",
+      "category": "route",
+      "triggers": [
+        "高雄到墾丁",
+        "墾丁到高雄",
+        "高雄墾丁",
+        "多久到墾丁",
+        "怎麼去墾丁",
+        "去墾丁"
+      ],
+      "response": "🗺️ 高雄 → 墾丁 路程時間\n\n| 交通方式 | 時間 | 說明 |\n|---------|------|------|\n| 計程車/包車 | 約1.5–2小時 | 最方便，直達墾丁大街 |\n| 客運（國光/墾丁快線）| 約2–2.5小時 | 高雄火車站搭乘 |\n| 租機車 | 約1.5小時 | 需國際駕照 |\n| 開車（國道3號→南迴）| 約1.5小時 | 假日塞車可能2小時以上 |\n\n💰 計程車費用參考：\n• 高雄市區→墾丁大街：約NT$1,200–1,600\n• 小港機場→墾丁：約NT$1,500–2,000\n\n✅ 給司機的說明：\n「我的目的地是墾丁大街（Kenting Main Street），請幫我走國道3號經恆春。」\n\n✅ 給外籍旅客的說明：\n\"The easiest way to get to Kenting from Kaohsiung is by taxi (about NT$1,200–1,600, 1.5 hours). Tell the driver: 墾丁大街 (Kenting Main Street).\""
+    },
+    {
+      "id": "route_kaohsiung_tainan",
+      "category": "route",
+      "triggers": [
+        "高雄到台南",
+        "台南到高雄",
+        "高雄台南",
+        "高雄台南多久",
+        "台南高雄多久"
+      ],
+      "response": "🗺️ 高雄 ↔ 台南 路程時間\n\n| 交通方式 | 時間 | 費用（約）|\n|---------|------|----------|\n| 高鐵 | 15分鐘 | NT$155 |\n| 台鐵（自強號）| 35–40分鐘 | NT$107 |\n| 計程車 | 約45–60分鐘 | NT$600–900 |\n| 開車（國道1號）| 約45分鐘 | 少量過路費 |\n\n✅ 最佳選擇：\n高鐵最快（15分），但高鐵台南站需再轉車進市區；若想直達台南孔廟、赤崁樓一帶，搭台鐵至「台南站」較方便。\n\n✅ 給外籍旅客的說明：\n\"Between Kaohsiung and Tainan, the HSR takes only 15 minutes. However, the HSR Tainan Station is outside the city — take local rail (TRA) instead to reach the historic center directly.\""
+    },
+    {
+      "id": "route_kaohsiung_taitung",
+      "category": "route",
+      "triggers": [
+        "高雄到台東",
+        "台東到高雄",
+        "高雄台東",
+        "多久到台東",
+        "怎麼去台東",
+        "南迴"
+      ],
+      "response": "🗺️ 高雄 → 台東 路程時間\n\n| 交通方式 | 時間 | 說明 |\n|---------|------|------|\n| 台鐵（普悠瑪/自強號，南迴線）| 約2.5小時 | 沿海岸風景壯麗 |\n| 開車（南迴公路）| 約2.5–3小時 | 山海交織，建議白天行駛 |\n| 飛機（高雄→台東）| 約45分鐘 | 班次少，需查航班 |\n\n🛤️ 南迴公路風景亮點：\n• 多良車站（全台最美廢棄車站）\n• 金崙溫泉\n• 太麻里（日出聖地）\n\n✅ 給外籍旅客的說明：\n\"The train ride from Kaohsiung to Taitung along the South Link Line takes about 2.5 hours and offers stunning coastal scenery. It's one of the most scenic train routes in Taiwan — highly recommended!\"\n\n⚠️ 注意：南迴公路為山路，夜間行駛需特別小心；颱風後可能有落石或路基損壞"
+    },
+    {
+      "id": "spot_pier2",
+      "category": "attraction",
+      "triggers": [
+        "駁二",
+        "pier 2",
+        "pier-2",
+        "駁二藝術特區",
+        "大義倉庫",
+        "篷萊倉庫"
+      ],
+      "response": "🎨 駁二藝術特區（Pier-2 Art Center）\n\n高雄最受歡迎的文創景點，由昔日港口倉庫改建，全年展覽、市集、裝置藝術不間斷。\n\n📍 位置：高雄市鹽埕區大勇路1號\n⏰ 開放時間：週一至週五 10:00–18:00；週末 10:00–20:00\n🎫 門票：部分展覽免費，特展另計（約NT$100–200）\n\n✅ 給司機的說明：\n「Pier-2 Art Center is located near the harbor area (Yancheng District). It's about 10–15 minutes from Zuoying HSR station by taxi.\"\n\n🚇 搭捷運：橘線「鹽埕埔站」步行約8分鐘\n\n📸 IG 熱門打卡：1號倉庫彩色塗鴉牆、戶外裝置藝術"
+    },
+    {
+      "id": "spot_lotus_pond",
+      "category": "attraction",
+      "triggers": [
+        "蓮池潭",
+        "lotus pond",
+        "龍虎塔",
+        "dragon tiger",
+        "春秋閣",
+        "左營"
+      ],
+      "response": "🐉 蓮池潭（Lotus Pond）＋龍虎塔\n\n高雄最具代表性的宗教與觀光景點，湖面上建有春秋閣、龍虎塔等廟宇建築。\n\n📍 位置：高雄市左營區蓮潭路\n⏰ 開放時間：全天（各廟宇 08:00–17:00）\n🎫 門票：免費\n\n✅ 給外籍旅客的說明：\n「Enter through the Dragon's mouth and exit through the Tiger's mouth — it's said to bring good luck and ward off bad spirits.\"\n\n⛩️ 禮儀注意：\n• 進廟前請摘帽\n• 神明前勿以手指指向神像\n• 拍照請避免打擾祭拜中的信眾\n\n🚇 搭捷運：紅線「生態園區站」步行約12分鐘"
+    },
+    {
+      "id": "spot_cijin",
+      "category": "attraction",
+      "triggers": [
+        "旗津",
+        "cijin",
+        "旗後",
+        "旗津海灘",
+        "旗津老街",
+        "旗津渡輪",
+        "搭渡輪"
+      ],
+      "response": "⛴️ 旗津（Cijin Island）\n\n高雄市的離島，搭渡輪10分鐘即達，有老街、海灘、海鮮和百年燈塔。\n\n📍 渡輪碼頭：鼓山輪渡站（高雄市鼓山區濱海一路96號）\n⏰ 渡輪班次：24小時運行，尖峰時段每10分鐘一班\n💰 渡輪票價：NT$35（機車NT$15另計）\n\n✅ 給司機的說明：\n「We'd like to go to Cijin Ferry Terminal (Gushan Wharf). After crossing, we plan to rent bicycles and explore the old street.\"\n\n🦞 必吃：現撈海鮮、旗魚黑輪、泡泡冰\n⏱️ 建議停留：半天（步行遊覽老街＋燈塔＋海灘）\n\n⚠️ 注意：機車可一起上渡輪，但自行車渡輪不建議於颱風前後搭乘"
+    },
+    {
+      "id": "spot_formosa_blvd",
+      "category": "attraction",
+      "triggers": [
+        "美麗島站",
+        "美麗島",
+        "formosa boulevard",
+        "光之穹頂",
+        "捷運美麗島",
+        "stained glass"
+      ],
+      "response": "🌈 美麗島捷運站（Formosa Boulevard Station）\n\n榮獲「全球最美地鐵站」殊榮，站內有義大利藝術家創作的超大型彩繪玻璃「光之穹頂」。\n\n📍 位置：高雄市苓雅區中山一路115號（紅橘線交會）\n⏰ 捷運站：全天開放（05:30–24:00）\n🎫 進站不需另購票，搭乘捷運即可欣賞\n\n✅ 給外籍旅客的說明：\n「Formosa Boulevard Station is one of the most beautiful subway stations in the world. The ceiling is a massive stained-glass dome — it's free to view when you take the MRT.\"\n\n📸 最佳拍攝時間：白天自然光照射時最美（10:00–14:00）\n🚇 交通：高雄捷運紅線＋橘線交會站，步出3號出口"
+    },
+    {
+      "id": "spot_anping_fort",
+      "category": "attraction",
+      "triggers": [
+        "安平古堡",
+        "anping fort",
+        "安平",
+        "熱蘭遮城",
+        "台灣城",
+        "荷蘭城堡"
+      ],
+      "response": "🏰 安平古堡（Anping Fort / Fort Zeelandia）\n\n台灣最古老的城堡，建於1624年荷蘭殖民時期，見證台灣400年歷史。\n\n📍 位置：台南市安平區國勝路82號\n⏰ 開放時間：08:30–17:30（週一休館）\n🎫 門票：大人NT$70，學生NT$35，6歲以下免費\n\n✅ 給外籍旅客的說明：\n\"Fort Zeelandia was built by the Dutch East India Company in 1624. It's one of Taiwan's oldest historical sites. The observation tower offers a panoramic view of Anping Harbor.\"\n\n✅ 給司機的說明：\n目的地是「台南安平古堡」，位於安平老街旁，停車場在國勝路旁的安平區公所附近。\n\n📍 周邊景點：安平老街、安平豆花（必吃）、安平海關碼頭"
+    },
+    {
+      "id": "spot_chihkan_tower",
+      "category": "attraction",
+      "triggers": [
+        "赤崁樓",
+        "chihkan",
+        "赤嵌樓",
+        "普羅民遮城",
+        "台南古蹟",
+        "四百年"
+      ],
+      "response": "🏯 赤崁樓（Chihkan Tower / Fort Provintia）\n\n台南最著名地標，1653年荷蘭人興建，後由清朝改建為廟宇群，保存多座海神廟與文昌閣。\n\n📍 位置：台南市中西區民族路二段212號\n⏰ 開放時間：08:30–21:30（全年不休）\n🎫 門票：大人NT$70，學生NT$35\n\n✅ 給外籍旅客的說明：\n\"Chihkan Tower (Fort Provintia) was built by the Dutch in 1653. Today it's a temple complex with beautiful architecture. Look for the famous stone turtles carrying stone steles — they're an iconic sight.\"\n\n📍 附近必訪：\n• 正興街（文青咖啡一條街，步行5分鐘）\n• 國華街（小吃密集，蝦捲、芒果冰）\n• 台南孔廟（步行約10分鐘）"
+    },
+    {
+      "id": "spot_kenting",
+      "category": "attraction",
+      "triggers": [
+        "墾丁",
+        "kenting",
+        "南灣",
+        "白沙灣",
+        "後壁湖",
+        "海生館",
+        "恆春",
+        "最南端"
+      ],
+      "response": "🌊 墾丁（Kenting National Park）\n\n台灣最南端的國家公園，海洋生態豐富，是夏日戲水、浮潛、衝浪的勝地。\n\n📍 主要景點：\n• 南灣（South Bay）：最熱鬧的海水浴場，水上活動多\n• 白沙灣（Baisha Bay）：沙灘潔白細軟，適合游泳\n• 後壁湖（Houbihu）：浮潛聖地，珊瑚礁美麗\n• 恆春古城：四座城門保存完整，傍晚散步最美\n• 國立海洋生物博物館：親子必去\n\n✅ 給外籍旅客的說明：\n\"Kenting is Taiwan's most popular beach resort. South Bay has water sports like banana boats and jet skis. For snorkeling, head to Houbihu — you can see sea turtles!\"\n\n⚠️ 注意事項：\n• 夏季海灘有危險旗幟制度：紅旗禁止入水，黃旗謹慎\n• 颱風期間海灘封閉\n• 7–8月為旺季，建議提早訂房"
+    },
+    {
+      "id": "spot_hot_air_balloon",
+      "category": "attraction",
+      "triggers": [
+        "熱氣球",
+        "hot air balloon",
+        "鹿野高台",
+        "台東熱氣球",
+        "氣球嘉年華",
+        "balloon festival"
+      ],
+      "response": "🎈 台東國際熱氣球嘉年華（Taitung Hot Air Balloon Festival）\n\n每年6–8月於鹿野高台（Luye Highland）舉辦，是亞洲規模最大的熱氣球節。\n\n📅 活動期間：每年約6月下旬–8月下旬（確切日期查官網）\n📍 地點：台東縣鹿野鄉瑞豐村高台\n\n🎈 活動項目：\n• 晨間繫留體驗（07:00–08:30）：搭乘熱氣球升空，遠眺花東縱谷\n• 熱氣球光雕音樂會（夜間）\n• 多顆球同時升空（壯觀！）\n\n✅ 給外籍旅客的說明：\n\"The Taitung Hot Air Balloon Festival runs June to August. You can ride a tethered balloon for breathtaking views over the East Rift Valley. Book the morning ride (07:00) in advance — it sells out fast!\"\n\n💰 費用：繫留體驗約NT$500–800 / 人（需提前網路預訂）\n⚠️ 天候影響大，下雨或強風時取消"
+    },
+    {
+      "id": "spot_zhiben",
+      "category": "attraction",
+      "triggers": [
+        "知本",
+        "知本溫泉",
+        "zhiben",
+        "台東溫泉",
+        "溫泉飯店",
+        "泡湯台東",
+        "台東泡湯"
+      ],
+      "response": "♨️ 知本溫泉（Zhiben Hot Springs）\n\n台東最著名的溫泉區，泉質為碳酸氫鈉泉（美人湯），水質清澈、對皮膚有益。\n\n📍 位置：台東縣卑南鄉溫泉村（距台東市區約18公里）\n⏱️ 車程：台東市區→知本約25分鐘\n\n🏨 住宿選擇：\n• 知本老爺酒店（高檔，含多種泉池）\n• 統茂溫泉渡假村\n• 多家溫泉民宿（NT$1,500–4,000 / 晚含泡湯）\n\n✅ 給外籍旅客的說明：\n\"Zhiben Hot Springs features sodium bicarbonate springs, known as 'beauty springs' because they leave skin feeling silky smooth. Many hotels offer both indoor and outdoor pools.\"\n\n⚠️ 泡湯注意事項：\n• 入池前先沖澡\n• 心臟病、高血壓患者請勿久泡\n• 一般建議每次不超過15–20分鐘"
+    },
+    {
+      "id": "spot_brown_blvd",
+      "category": "attraction",
+      "triggers": [
+        "伯朗大道",
+        "brown boulevard",
+        "金城武樹",
+        "金武大道",
+        "池上",
+        "稻田",
+        "花東縱谷"
+      ],
+      "response": "🌾 伯朗大道（Brown Boulevard / Bōlǎng Avenue）\n\n台東池上鄉著名的農路，兩側是一望無際的稻田，中央有一棵孤立的茄苳樹（俗稱「金城武樹」）。\n\n📍 位置：台東縣池上鄉大坡路（Google Maps 搜尋「伯朗大道」）\n⏱️ 車程：台東市區→池上約50分鐘\n\n✅ 給外籍旅客的說明：\n\"Brown Boulevard is a 3km-long road surrounded by rice paddies. The lone tree in the middle is called the 'Takeshi Kaneshiro Tree' after a famous Japanese actor filmed an ad here. Best visited at golden hour (late afternoon).\"\n\n🚲 建議方式：在池上租腳踏車（約NT$150–200 / 小時）慢慢騎\n📸 最佳拍照時間：清晨（薄霧）或傍晚（金黃色光線）\n\n⚠️ 注意：稻田為農地，請勿踩入田間，只在小路上行走"
+    },
+    {
+      "id": "driver_destination_confirm",
+      "category": "driver_passenger",
+      "triggers": [
+        "要去哪",
+        "目的地確認",
+        "司機問",
+        "乘客要去",
+        "您要去哪裡",
+        "載去哪",
+        "哪裡下車"
+      ],
+      "response": "🚕 司乘目的地確認（常用對話）\n\n━━━ 司機常問 ━━━\n「你們要去哪裡？」\n「請問目的地是？」\n→ 英文：\"Where would you like to go?\"\n\n━━━ 乘客常答 ━━━\n• 「請到____（飯店名）。」\n• 「請帶我去____（景點名）。」\n→ 英文：\"Please take us to ____ (name of hotel/attraction).\"\n\n━━━ 司機確認 ━━━\n「好的，我知道了。」/ 「了解。」\n→ 英文：\"Understood. I'll take you there.\"\n\n━━━ 外籍旅客常見目的地 ━━━\n| 中文 | 英文 / 拼音 |\n|------|------------|\n| 蓮池潭 | Lotus Pond |\n| 駁二 | Pier-2 Art Center |\n| 旗津渡輪站 | Cijin Ferry Terminal |\n| 美麗島站 | Formosa Boulevard Station |\n| 高雄火車站 | Kaohsiung Train Station |\n| 高鐵左營站 | Zuoying HSR Station |\n| 墾丁大街 | Kenting Main Street |"
+    },
+    {
+      "id": "driver_foreign_passenger",
+      "category": "driver_passenger",
+      "triggers": [
+        "外國人乘客",
+        "外籍旅客",
+        "外國旅客",
+        "不會說中文",
+        "英文溝通",
+        "語言不通",
+        "看不懂中文"
+      ],
+      "response": "🌏 接待外籍旅客：司機常用英文句型\n\n━━━ 基本溝通 ━━━\n「你好！」→ \"Hello! / Hi there!\"\n「請出示目的地。」→ \"Please show me your destination on the map.\"\n「大約____分鐘到。」→ \"It'll take about ____ minutes.\"\n「我們到了。」→ \"We've arrived!\"\n\n━━━ 費用說明 ━━━\n「計費金額是____元。」→ \"The fare is ____ NT dollars.\"\n「可以刷信用卡。」→ \"We accept credit cards.\"\n「只能收現金。」→ \"Cash only, please.\"\n\n━━━ 緊急/注意 ━━━\n「請繫安全帶。」→ \"Please fasten your seatbelt.\"\n「這裡不能停車，稍等我找停車場。」→ \"I can't stop here. I'll find a parking area nearby.\"\n\n━━━ 實用建議 ━━━\n• 讓旅客在手機地圖上指出目的地，不需口頭溝通\n• Line Taxi、Uber 有目的地資訊，可直接接單不需問路"
+    },
+    {
+      "id": "driver_route_explain",
+      "category": "driver_passenger",
+      "triggers": [
+        "走哪條路",
+        "路線",
+        "繞路嗎",
+        "塞車嗎",
+        "換條路",
+        "高速公路",
+        "國道"
+      ],
+      "response": "🗺️ 南台灣司機常用路線說明\n\n━━━ 常用國道 ━━━\n• 國道1號（中山高）：台北↔高雄，經台中、嘉義\n• 國道3號（二高）：台北↔屏東，風景較好\n• 國道10號：高雄市區↔旗山（往台東方向）\n\n━━━ 市區重要路段 ━━━\n• 中山路：高雄市主要幹道，往北到左營高鐵\n• 博愛路：高雄市中心往旗津方向\n• 中山路（台南）：台南市中心與火車站連接\n\n━━━ 跟外籍旅客解釋 ━━━\n「我們走高速公路，比較快。」\n→ \"We'll take the expressway — it's faster.\"\n\n「前面塞車，我換條路，費用一樣。」\n→ \"There's traffic ahead. I'll take a detour — the fare stays the same.\"\n\n⚠️ 注意：高雄市區尖峰時段（07:30–09:00、17:30–19:30）明顯壅塞，建議預留更多時間"
+    },
+    {
+      "id": "driver_tips",
+      "category": "driver_passenger",
+      "triggers": [
+        "小費",
+        "tip",
+        "tips",
+        "台灣給小費嗎",
+        "司機小費",
+        "要給小費嗎"
+      ],
+      "response": "💰 台灣計程車小費文化\n\n🇹🇼 台灣習慣：\n• 台灣計程車一般不需要給小費\n• 跳表計費，車資即為全部費用\n• 若服務特別好（幫忙搬行李、解說景點），可自由給小費，司機通常不會拒絕\n\n✅ 給外籍旅客的說明：\n\"Tipping is NOT expected in Taiwan taxis. The meter fare is the total. However, if the driver was exceptionally helpful, a small tip (rounding up or NT$50–100) is appreciated but never required.\"\n\n💳 付款方式：\n• 多數計程車接受現金\n• 部分接受悠遊卡（EasyCard）\n• 大都市（台北、高雄）越來越多可刷信用卡\n• Uber / Line Taxi：綁定信用卡，自動扣款"
+    },
+    {
+      "id": "notice_typhoon",
+      "category": "notice",
+      "triggers": [
+        "颱風",
+        "台風",
+        "typhoon",
+        "颱風警報",
+        "海上警報",
+        "陸上警報",
+        "颱風天",
+        "停班停課"
+      ],
+      "response": "🌀 颱風注意事項（台灣）\n\n⚠️ 颱風警報層級：\n• 海上颱風警報：颱風在外海，海象不佳\n• 陸上颱風警報：颱風即將登陸，停班停課開始考量\n• 停班停課：各縣市獨立宣布，當天早上6點決定\n\n🚕 對計程車司機的影響：\n• 陸上警報發布後，部分司機停止出車\n• 若仍需搭車，Uber/Line Taxi 仍運行（但動態定價可能較高）\n\n✅ 給外籍旅客的說明：\n\"If a typhoon warning is issued, beaches and outdoor attractions will close. Hotels will provide sandbags and board windows. Stay indoors, stock up on food and water, and follow hotel/local government instructions.\"\n\n🏖️ 特別注意：\n• 颱風期間絕對禁止戲水\n• 景點（墾丁、太魯閣等）強制關閉\n• 航班大量取消，請保持彈性"
+    },
+    {
+      "id": "notice_beach_safety",
+      "category": "notice",
+      "triggers": [
+        "海灘安全",
+        "旗幟",
+        "紅旗",
+        "黃旗",
+        "溺水",
+        "離岸流",
+        "海浪",
+        "可以游泳嗎",
+        "海灘規定"
+      ],
+      "response": "🏖️ 台灣海灘安全旗幟系統\n\n🚩 旗幟意義：\n• 🟢 綠旗：安全，可游泳\n• 🟡 黃旗：謹慎，水流較強，建議有能力者才下水\n• 🔴 紅旗：危險，禁止游泳（違反可能受罰）\n• ⚫ 黑旗：非游泳區，嚴禁下水\n• 🟣 紫旗：水中有危險生物（水母、鯊魚等）\n\n✅ 給外籍旅客的說明：\n\"Taiwan's beaches use a flag warning system. Green = safe, Yellow = caution, Red = no swimming. ALWAYS check the flag before entering the water. Rip currents are common — if caught in one, swim parallel to shore, not against the current.\"\n\n🆘 遇到溺水或緊急狀況：\n• 撥打 110（警察）或 119（救護/消防）\n• 向海灘救生員（穿橘色背心）求援"
+    },
+    {
+      "id": "notice_temple_etiquette",
+      "category": "notice",
+      "triggers": [
+        "廟宇",
+        "廟",
+        "寺廟",
+        "拜拜",
+        "temple",
+        "參拜",
+        "禮儀",
+        "注意事項廟",
+        "廟裡規矩"
+      ],
+      "response": "⛩️ 台灣廟宇參觀禮儀\n\n✅ 應該做的事：\n• 進廟前可脫帽表示尊重（非強制）\n• 若看到香，可向服務人員詢問是否可拿香參拜\n• 可自由拍照（避免打擾祭拜中的信眾）\n• 可投入功德箱隨喜（非強制）\n\n❌ 應避免的事：\n• 不要用手指指向神像（不禮貌）\n• 不要踩在門檻上（需跨過，台灣民間信仰中門檻不可踩）\n• 穿著以整齊為主（短褲進廟無特別限制，但長褲更為恰當）\n• 大聲喧嘩或嬉鬧\n\n✅ 給外籍旅客的說明：\n\"When visiting Taiwanese temples, it's respectful not to point at the deities and to step OVER the threshold (never ON it). Photography is usually fine — just avoid disturbing worshippers.\"\n\n📸 最推薦的廟宇：\n• 高雄：蓮池潭龍虎塔、旗津天后宮\n• 台南：台南孔廟、赤崁樓、祀典武廟"
+    },
+    {
+      "id": "notice_weather_heatstroke",
+      "category": "notice",
+      "triggers": [
+        "防曬",
+        "中暑",
+        "太熱",
+        "熱浪",
+        "天氣炎熱",
+        "夏天台灣",
+        "南部很熱",
+        "heatstroke",
+        "sunscreen"
+      ],
+      "response": "☀️ 南台灣氣候與防中暑須知\n\n🌡️ 氣候特點：\n• 夏季（6–9月）：氣溫達33–36°C，體感溫度超過40°C\n• 冬季（12–2月）：15–22°C，溫和舒適\n• 梅雨季（4–6月）：午後雷陣雨常見\n\n🧴 防曬建議：\n• SPF 50+ 防曬乳，每2小時補擦\n• 遮陽帽、太陽眼鏡、防曬衣\n• 避免 11:00–15:00 在無遮蔽的地方長時間活動\n\n💧 防中暑重點：\n• 大量補水（每小時至少500ml）\n• 感到頭暈、噁心、大量出汗 → 立即到陰涼處休息，補充電解質\n• 嚴重中暑 → 撥打 119\n\n✅ 給外籍旅客的說明：\n\"Southern Taiwan is very hot in summer — temperatures regularly exceed 35°C (95°F). Wear sunscreen, a hat, and drink plenty of water. Convenience stores (7-11, FamilyMart) are everywhere — great for buying cold drinks and cooling down.\"\n\n🏪 7-11/全家：每隔幾百公尺就有一家，是補水和乘涼的好去處"
+    },
+    {
+      "id": "notice_cash_payment",
+      "category": "notice",
+      "triggers": [
+        "要帶現金嗎",
+        "收信用卡嗎",
+        "夜市現金",
+        "刷卡",
+        "悠遊卡",
+        "電子支付",
+        "付款方式"
+      ],
+      "response": "💴 南台灣付款方式須知\n\n💳 信用卡接受度：\n• 大型飯店、百貨、連鎖餐廳：普遍接受\n• 觀光景點、博物館：多半接受\n• 夜市、路邊攤、傳統市場：通常只收現金\n• 計程車：部分可刷卡（Uber 綁信用卡）\n\n🎫 悠遊卡（EasyCard）/ 一卡通（iPass）：\n• 可用於高雄捷運、台南公車、部分便利商店、計程車\n• 外籍旅客可在機場/捷運站購買儲值（NT$100 押金）\n\n💵 建議攜帶現金：\n• 夜市消費（一次約NT$200–500）\n• 傳統廟宇香油錢\n• 偏遠景點小攤\n\n✅ 給外籍旅客的說明：\n\"Night markets in Taiwan are cash-only. ATMs are widely available at 7-Eleven and banks — they accept international Visa/Mastercard. Exchange rate at bank ATMs is usually better than airport exchange counters.\"\n\n🏧 提款：7-11的ibon機或郵局ATM支援外國卡（Visa/Mastercard）"
+    },
+    {
+      "id": "notice_emergency",
+      "category": "notice",
+      "triggers": [
+        "緊急電話",
+        "急救",
+        "救護車",
+        "警察電話",
+        "迷路",
+        "求助",
+        "遇到麻煩",
+        "emergency",
+        "help",
+        "SOS",
+        "叫救護車"
+      ],
+      "response": "🆘 南台灣緊急聯絡資訊\n\n📞 緊急電話：\n• 110：警察（遇竊、意外、犯罪）\n• 119：救護車、消防（受傷、火災）\n• 1991：外籍人士諮詢專線（24小時，多語言）\n• 0800-024-111：台灣觀光諮詢熱線（免費）\n\n✅ 給外籍旅客的說明：\n\"In an emergency, call 119 for ambulance/fire or 110 for police. If you need assistance in English, call 1991 (Foreign Affairs Police, 24 hours, multilingual).\"\n\n🏥 主要醫院：\n• 高雄：高雄長庚醫院（鳥松）、高雄榮總\n• 台南：成大醫院、台南市立醫院\n• 屏東（墾丁附近）：屏東基督教醫院\n\n📋 實用備忘：\n• 照相護照及重要文件（放在雲端備份）\n• 海外旅遊險：建議購買含緊急醫療的保險\n• 台灣醫療水準高，可放心就醫"
+    },
+    {
+      "id": "city_kaohsiung",
+      "category": "city",
+      "triggers": [
+        "高雄",
+        "kaohsiung",
+        "去高雄",
+        "高雄市",
+        "到高雄"
+      ],
+      "response": "🏙️ 高雄市（Kaohsiung）\n\n台灣第二大城市，港都氣息濃厚，近年大力轉型為觀光與文化城市。\n\n📍 必去景點：\n• 駁二藝術特區（文創市集）\n• 蓮池潭（龍虎塔）\n• 旗津（渡輪＋海鮮＋老街）\n• 美麗島捷運站（全球最美車站之一）\n• 左營蓮池潭＋春秋閣\n\n🚌 對外交通：\n• 高鐵左營站（台北→高雄約1小時36分）\n• 台鐵高雄站（市中心）\n• 小港國際機場（市區約20分鐘）\n\n☀️ 氣候：南台灣氣候炎熱，6–10月高溫可達35°C以上，記得防曬防中暑。"
+    },
+    {
+      "id": "city_tainan",
+      "category": "city",
+      "triggers": [
+        "台南",
+        "tainan",
+        "去台南",
+        "台南市",
+        "到台南",
+        "府城"
+      ],
+      "response": "🏛️ 台南市（Tainan）\n\n台灣最古老的城市，有「台灣首都」之稱，古蹟與小吃密度極高。\n\n📍 必去景點：\n• 安平古堡（荷蘭時期遺址）\n• 赤崁樓（400年歷史古蹟）\n• 台南孔廟（全台首學）\n• 神農街（文青老街，夜晚最美）\n• 億載金城、安平老街\n\n🍜 必吃小吃：\n• 擔仔麵、牛肉湯、蝦捲\n• 鱔魚意麵、棺材板\n\n🚌 對外交通：\n• 高鐵台南站（沙崙站，需轉台鐵）\n• 台鐵台南站（市中心）\n• 台南→高雄：開車約45分鐘"
+    },
+    {
+      "id": "city_pingtung",
+      "category": "city",
+      "triggers": [
+        "屏東",
+        "pingtung",
+        "去屏東",
+        "屏東縣",
+        "恆春",
+        "墾丁",
+        "kenting"
+      ],
+      "response": "🌴 屏東縣（Pingtung）\n\n台灣最南端的縣市，涵蓋墾丁國家公園，是熱帶風情與海洋活動的代名詞。\n\n📍 主要區域：\n• 墾丁（Kenting）：台灣最熱鬧的海灘度假區\n• 恆春古城：保存完整的清代城門\n• 小琉球（Liuqiu Island）：浮潛聖地，出海見海龜\n• 霧台：魯凱族原住民部落，山景壯觀\n\n🌊 熱門活動：\n• 浮潛、衝浪、SUP（立槳衝浪）\n• 墾丁大街夜市\n• 春天吶喊音樂祭（每年春節後）\n\n⚠️ 注意：夏季（6–10月）台風季，若發布海上颱風警報，海灘關閉、活動暫停"
+    },
+    {
+      "id": "city_taitung",
+      "category": "city",
+      "triggers": [
+        "台東",
+        "taitung",
+        "去台東",
+        "台東縣",
+        "到台東"
+      ],
+      "response": "🌄 台東縣（Taitung）\n\n台灣東側後山，以原始自然景觀、熱氣球節與溫泉聞名，旅遊步調緩慢愜意。\n\n📍 必去景點：\n• 伯朗大道（金城武樹／廣告拍攝地）\n• 知本溫泉（台灣最知名的溫泉之一）\n• 台東熱氣球嘉年華（每年6–8月，鹿野高台）\n• 小野柳（海蝕地形，媲美野柳）\n• 綠島（浮潛、柴魚博物館）\n\n🚌 對外交通：\n• 台鐵（花東線，高雄→台東約2.5小時）\n• 台東豐年機場（台北→台東約55分鐘）\n• 高雄→台東開車：南迴公路約2.5–3小時（沿途風景壯觀）"
+    }
+  ]
+}
